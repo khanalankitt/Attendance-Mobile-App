@@ -1,1 +1,1 @@
-<h1>Under Construction!</h1>
+Attendance App is a minimal and efficient tool designed to help manage student attendance across semesters. It provides a clean interface to view, track, and organize attendance records with calendar-based highlights and real-time data from Supabase.
