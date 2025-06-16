@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Attendance",
+    "slug": "Attendance",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/logo.png",
+        "backgroundColor": "#f1eee9"
+      },
+      "package": "com.ankitkhanal.Attendance"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/logo.png",
+          "imageWidth": 400,
+          "resizeMode": "contain",
+          "backgroundColor": "#f1eee9"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2828e04e-3b71-40d0-8d3e-a755995889c8"
+      }
+    },
+    "owner": "ankitkhanal"
+  }
+}
