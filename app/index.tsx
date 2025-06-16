@@ -21,7 +21,7 @@ export default function HomeScreen() {
   useEffect(() => {
     const prepare = async () => {
       try {
-        const { data, error } = await supabase.from("semesters").select("*");
+        const { data, error } = await supabase.from("semesters_with_count").select("*");
         if (error) {
           console.error("Supabase error:", error);
         } else {
@@ -33,7 +33,6 @@ export default function HomeScreen() {
         setLoading(false);
       }
     };
-
     prepare();
   }, []);
 
@@ -72,7 +71,7 @@ export default function HomeScreen() {
             asChild
           >
             <Pressable style={styles.semesterBox}>
-              <Text style={{ position: "absolute", right: 10, bottom: 10, fontSize: 14, color: "#616161" }}>{item.student_count} Students</Text>
+              <Text style={{ position: "absolute", right: 10, bottom: 10, fontSize: 14, color: item.isActive == "1" ? "green" : "red" }}>{item.student_count} Students</Text>
               <View>
                 <Text style={styles.semesterTitle}>{item.name}</Text>
                 <Text style={styles.semesterSubtitle}>Semester</Text>
