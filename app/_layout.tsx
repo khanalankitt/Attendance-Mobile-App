@@ -2,42 +2,47 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import "../global.css";
-
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+  const [appIsReady, setAppIsReady] = useState(false);
 
   useEffect(() => {
-    if (loaded) {
+    const prepare = async () => {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (e) {
+        console.warn("Splash screen error:", e);
+      } finally {
+        setAppIsReady(true);
+      }
+    };
+
+    prepare();
+  }, []);
+
+  useEffect(() => {
+    if (loaded && appIsReady) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, appIsReady]);
 
-  if (!loaded) {
+  if (!loaded || !appIsReady) {
     return null;
   }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <StatusBar style="light" backgroundColor="#1f2937" />
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="semester/[name]" options={{ headerShown: false }} />
-        <Stack.Screen name="student/[name]" options={{ headerShown: false }} />
-        <Stack.Screen name="report/[name]" options={{ headerShown: false }} />
-        <Stack.Screen name="edit/editDetails" options={{ headerShown: false }} />
-        <Stack.Screen name="calendar/calendar" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <Stack screenOptions={{ headerShown: false }} />
     </ThemeProvider>
   );
 }
