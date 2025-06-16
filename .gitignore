@@ -39,4 +39,4 @@ yarn-error.*
 
 app-example
 
-app/utils/supabase.ts
+utils/

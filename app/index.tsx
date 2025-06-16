@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { Semester } from "@/types/types";
-import { supabase } from "./utils/supabase";
+import { supabase } from "../utils/supabase";
 import "../global.css";
 
 export default function HomeScreen() {

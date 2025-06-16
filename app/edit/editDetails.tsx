@@ -2,7 +2,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 
 import React, { useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { supabase } from "../utils/supabase";
+import { supabase } from "../../utils/supabase";
 export default function EditDetails() {
   const { name, subject, present, student_id } = useLocalSearchParams();
   const [editedValue, setEditedValue] = useState<string>("");
