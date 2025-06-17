@@ -38,8 +38,3 @@ A modern attendance tracking mobile app built using **Expo Router**, **React Nat
 git clone https://github.com/khanalankitt/Attendance-Mobile-App.git
 npm install
 npx expo start
-
----
-
-
-
