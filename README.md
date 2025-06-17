@@ -41,9 +41,7 @@ npx expo start
 
 ---
 
-## 📄 License
-
 This project is licensed under the MIT License.
-
 © 2025 Ankit Khanal. All rights reserved.
+
 
