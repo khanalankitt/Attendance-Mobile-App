@@ -38,3 +38,12 @@ A modern attendance tracking mobile app built using **Expo Router**, **React Nat
 git clone https://github.com/khanalankitt/Attendance-Mobile-App.git
 npm install
 npx expo start
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+© 2025 Ankit Khanal. All rights reserved.
+
