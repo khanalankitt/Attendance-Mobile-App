@@ -2,7 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from "
 import React, { useEffect, useState } from "react";
 import { Link, useLocalSearchParams, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "@/utils/supabase";
 
 export default function DynamicStudent() {
   const { name, subjects, student_id } = useLocalSearchParams();

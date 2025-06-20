@@ -2,7 +2,7 @@ import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { Calendar as RNCalendar } from "react-native-calendars";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "@/utils/supabase";
 
 export default function Calendar() {
   const { name, subject, student_id } = useLocalSearchParams();
@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
   },
   navbar: {
     height: 80,
-    marginTop: 26, //exact dont touch
     backgroundColor: "#1f2937",
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,

@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useLocalSearchParams, router } from "expo-router";
 import { Dropdown } from "react-native-element-dropdown";
 import { Student } from "@/types/types";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "@/utils/supabase";
 
 
 const fetchStudentsAndSubjects = async (semester: string) => {
