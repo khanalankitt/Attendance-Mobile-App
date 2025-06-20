@@ -1,40 +1,52 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-import "react-native-reanimated";
-
-import { useColorScheme } from "@/hooks/useColorScheme";
-import { StatusBar } from "react-native";
+import * as Font from "expo-font";
+import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    async function loadResources() {
+      try {
+        await Font.loadAsync({
+          SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+        });
+      } catch (e) {
+        console.warn("Error loading fonts:", e);
+      } finally {
+        setIsReady(true);
+      }
     }
-  }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
+    loadResources();
+  }, []);
+
+  // Hide splash screen when ready
+  useEffect(() => {
+    const hideSplashScreen = async () => {
+      if (isReady) {
+        try {
+          await SplashScreen.hideAsync();
+        } catch (e) {
+          console.warn("Error hiding splash screen:", e);
+        }
+      }
+    };
+
+    hideSplashScreen();
+  }, [isReady]);
+
+  if (!isReady) return null;
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StatusBar barStyle="light-content" backgroundColor="#1f2937"></StatusBar>
-      <Stack screenOptions={{ headerShown: false }}>
-      </Stack>
-    </ThemeProvider>
+    <View style={{ flex: 1 }}>
+      <StatusBar style="light" backgroundColor="#1f2937" />
+      <Stack screenOptions={{ headerShown: false }} />
+    </View>
   );
 }
